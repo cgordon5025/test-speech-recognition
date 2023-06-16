@@ -1,6 +1,10 @@
 import logo from './logo.svg';
 import './App.css';
 import Voicerecognitionstest from './components/voicerecognitionstest';
+import { WebcamProvider } from './Context/WebcamContext';
+import Webcam from './components/webcam';
+import WebcamStart from './pages/webcamStart';
+import Photo from './components/Photo';
 function App() {
   return (
     <div className="App">
@@ -11,14 +15,20 @@ function App() {
         </p>
         <a
           className="App-link"
-          href="https://reactjs.org"
+          href="https://reactjs.org"y
+          
           target="_blank"
           rel="noopener noreferrer"
         >
           Learn React
         </a>
       </header> */}
-      <Voicerecognitionstest />
+      <WebcamProvider>
+        {/* <Voicerecognitionstest /> */}
+        {/* <Webcam /> */}
+        {/* <WebcamStart /> */}
+        <Photo />
+      </WebcamProvider>
     </div>
   );
 }
