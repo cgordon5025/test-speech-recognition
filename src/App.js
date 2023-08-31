@@ -2,6 +2,7 @@ import logo from './logo.svg';
 import './App.css';
 import Voicerecognitionstest from './components/voicerecognitionstest';
 import { WebcamProvider } from './Context/WebcamContext';
+import { SpokenWordProvider } from './Context/SpokenWordContext';
 import Webcam from './components/webcam';
 import WebcamStart from './pages/webcamStart';
 import Photo from './components/Photo';
@@ -23,10 +24,12 @@ function App() {
         </a>
       </header> */}
       <WebcamProvider>
-        {/* <Voicerecognitionstest /> */}
-        <Webcam />
-        {/* <WebcamStart /> */}
-        <Photo />
+        <SpokenWordProvider>
+          <Voicerecognitionstest />
+          {/* <Webcam /> */}
+          {/* <WebcamStart /> */}
+          {/* <Photo /> */}
+        </SpokenWordProvider>
       </WebcamProvider>
     </div>
   );

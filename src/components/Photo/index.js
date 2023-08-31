@@ -6,11 +6,14 @@ const Photo = () => {
     const mediaRecorderRef = useRef(null)
     const [chunks, setChunks] = useState([])
     const [image, setImage] = useState()
+    const [display, setDisplay] = useState("block")
     const capture = useCallback(() => {
         const imageSrc = webcamRef.current.getScreenshot()
         setImage(imageSrc)
     }, [webcamRef])
-
+    console.log(image)
+    console.log(webcamRef)
+    console.log(mediaRecorderRef)
     const recordVideo = useCallback(() => {
         mediaRecorderRef.current = new MediaRecorder(webcamRef.current.stream, {
             mimeType: 'video/webm'
@@ -26,7 +29,6 @@ const Photo = () => {
     const stopRecording = useCallback(() => {
         mediaRecorderRef.current.stop()
     }, [mediaRecorderRef, webcamRef])
-
     const download = () => {
         if (chunks.length) {
             const blob = new Blob(chunks, { type: "video/mp4" });
@@ -47,9 +49,12 @@ const Photo = () => {
         height: 720,
         facingMode: 'user'
     }
+    const hide = () => {
+        setDisplay("none")
+    }
     return (
         <>
-            <Webcam audio={false}
+            <Webcam style={{ display: display }} audio={false}
                 screenshotFormat='image/jpeg'
                 height={720}
                 ref={webcamRef}
@@ -57,6 +62,7 @@ const Photo = () => {
                 videoConstraints={videoConstraints} />
 
             <button onClick={capture}>Capture Photo</button>
+            <button onClick={hide}>Hide this</button>
             <button onClick={recordVideo}>Start Recording</button>
             <button onClick={stopRecording}>Stop</button>
             <button onClick={download}>Download</button>
